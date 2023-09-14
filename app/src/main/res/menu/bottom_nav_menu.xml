@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Explore"
+        android:id="@+id/navExplore"
+        android:icon="@drawable/ic_explore"
+        />
+
+    <item
+        android:title="Tiket"
+        android:id="@+id/navTiket"
+        android:icon="@drawable/ic_card"
+        />
+
+    <item
+        android:title="Transaksi"
+        android:id="@+id/navTransaksi"
+        android:icon="@drawable/ic_shop"
+        />
+
+    <item
+        android:title="Profile"
+        android:id="@+id/navProfile"
+        android:icon="@drawable/ic_person"
+        />
+</menu>

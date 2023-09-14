@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/beranda">
+
+    <fragment
+        android:id="@+id/beranda"
+        android:name="com.example.ticketingta.beranda"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" >
+        <action
+            android:id="@+id/action_beranda_to_detail_tiket"
+            app:destination="@id/detail_tiket" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detail_tiket"
+        android:name="com.example.ticketingta.detail_tiket"
+        android:label="fragment_detail_tiket"
+        tools:layout="@layout/fragment_detail_event" >
+        <action
+            android:id="@+id/action_detail_tiket_to_pilih_tiket"
+            app:destination="@id/pilih_tiket" />
+        <action
+            android:id="@+id/action_detail_tiket_to_beranda"
+            app:destination="@id/beranda" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pilih_tiket"
+        android:name="com.example.ticketingta.pilih_tiket"
+        android:label="fragment_pilih_tiket"
+        tools:layout="@layout/fragment_pilih_tiket" >
+        <action
+            android:id="@+id/action_pilih_tiket_to_detail_tiket"
+            app:destination="@id/detail_tiket" />
+    </fragment>
+    <fragment
+        android:id="@+id/payment_berhasil"
+        android:name="com.example.ticketingta.payment_berhasil"
+        android:label="fragment_payment_berhasil"
+        tools:layout="@layout/fragment_payment_berhasil" />
+    <fragment
+        android:id="@+id/payment_konfirmasi"
+        android:name="com.example.ticketingta.payment_konfirmasi"
+        android:label="fragment_payment_konfirmasi"
+        tools:layout="@layout/fragment_payment_konfirmasi" />
+    <fragment
+        android:id="@+id/payment_pending"
+        android:name="com.example.ticketingta.payment_pending"
+        android:label="fragment_payment_pending"
+        tools:layout="@layout/fragment_payment_pending" />
+    <fragment
+        android:id="@+id/payment_batal"
+        android:name="com.example.ticketingta.payment_batal"
+        android:label="fragment_payment_batal"
+        tools:layout="@layout/fragment_payment_batal" />
+    <fragment
+        android:id="@+id/tiket"
+        android:name="com.example.ticketingta.tiket"
+        android:label="fragment_tiket"
+        tools:layout="@layout/fragment_tiket" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.ticketingta.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/tiket_detail"
+        android:name="com.example.ticketingta.tiket_detail"
+        android:label="fragment_tiket_detail"
+        tools:layout="@layout/fragment_tiket_detail" />
+    <fragment
+        android:id="@+id/transaksi_berhasil"
+        android:name="com.example.ticketingta.transaksi_berhasil"
+        android:label="fragment_transaksi_berhasil"
+        tools:layout="@layout/fragment_transaksi_berhasil" />
+    <fragment
+        android:id="@+id/transaksi_dibatalkan"
+        android:name="com.example.ticketingta.transaksi_dibatalkan"
+        android:label="fragment_transaksi_dibatalkan"
+        tools:layout="@layout/fragment_transaksi_dibatalkan" />
+    <fragment
+        android:id="@+id/transaksi_pending"
+        android:name="com.example.ticketingta.transaksi_pending"
+        android:label="fragment_transaksi_pending"
+        tools:layout="@layout/fragment_transaksi_pending" />
+    <fragment
+        android:id="@+id/metode_pembayaran"
+        android:name="com.example.ticketingta.metode_pembayaran"
+        android:label="fragment_metode_pembayaran"
+        tools:layout="@layout/fragment_metode_pembayaran" />
+    <fragment
+        android:id="@+id/splash_screen"
+        android:name="com.example.ticketingta.splash_screen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.ticketingta.login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.ticketingta.register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+
+</navigation>
