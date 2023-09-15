@@ -43,7 +43,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvJenisTiket"
         android:layout_width="match_parent"
-        android:layout_height="735dp"
+        android:layout_height="335dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +56,9 @@
         android:layout_height="wrap_content"
         android:background="@color/bgpinkmayan"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rvJenisTiket">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,8 +69,8 @@
             <LinearLayout
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="left">
+                android:gravity="left"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="208dp"
@@ -87,8 +87,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp"
                         android:layout_marginRight="8dp"
+                        android:text="Rp"
                         android:textColor="@color/bgpinkbgt"
                         android:textSize="18dp"
                         android:textStyle="bold" />
@@ -107,11 +107,11 @@
 
             <Button
                 android:id="@+id/btnBayarPilihTiket"
-                android:layout_width="match_parent"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/bgpinkbgt"
                 android:text="Bayar"
-                android:textSize="18dp"
-                android:backgroundTint="@color/bgpinkbgt"/>
+                android:textSize="18dp" />
         </LinearLayout>
     </FrameLayout>
 
