@@ -119,14 +119,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordLoginLayout"
             tools:ignore="VisualLinkButtonSize" />
 
-        <TextView
-            android:id="@+id/tvlupapassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
-            android:text="Lupa Password?"
-            android:textColor="@color/bgabu"
-            android:layout_marginStart="150dp"/>
+
 
         <View
             android:id="@+id/vwLine1"
@@ -163,14 +156,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="290dp"
-            android:layout_marginHorizontal="16dp"
-            android:text="Masuk dengan Google"
-            android:textColor="@color/black"
-            style="@style/Login"/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -188,13 +174,7 @@
             android:textColor="@color/bgpinkbgt"
             android:layout_marginStart="180dp"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:layout_marginStart="32dp"
-            app:srcCompat="@drawable/google" />
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

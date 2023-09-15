@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="tiketdewasa">Tiket ini berlaku untuk umur minimal 14 tahun keatas, berlaku hanya untuk 1 orang.</string>
+    <string name="tiketdewasa">Tiket ini berlaku untuk semua umur, anda dapat menikmati semua guest star yang ada.</string>
     <string name="hargaTiketDewasa">Rp 200.000/tiket</string>
 
     <string name="nama_lengkap">Nama Lengkap</string>

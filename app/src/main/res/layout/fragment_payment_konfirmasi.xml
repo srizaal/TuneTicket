@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Konfirmasi"
+                android:text="Pembayaran"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -92,12 +92,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/icitem"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_more" />
+
         </LinearLayout>
 
         <LinearLayout
