@@ -6,7 +6,7 @@ data class Event(
     val gambarMapLokasi: String,
     val hargaTiket: Int,
     val jenisEvent: String,
-    val kodeEvent: Int,
+    val idEvent: Int,
     val listArtis: List<Artis>,
     val lokasi: String,
     val nama: String,

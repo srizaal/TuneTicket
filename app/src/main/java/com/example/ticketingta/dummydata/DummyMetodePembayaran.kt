@@ -4,7 +4,7 @@ import com.example.ticketingta.model.MetodePembayaran
 
 val metodePembayaranList = listOf(
     MetodePembayaran(
-        kodeMetodePembayaran = 1,
+        idMetodePembayaran = 1,
         nama = "BCA",
         gambar = "bca.png",
         deskripsi = "Pembayaran melalui transfer Bank BCA",
@@ -12,7 +12,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 3500
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 2,
+        idMetodePembayaran = 2,
         nama = "Mandiri",
         gambar = "mandiri.png",
         deskripsi = "Pembayaran melalui transfer Bank Mandiri",
@@ -20,7 +20,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 2800
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 3,
+        idMetodePembayaran = 3,
         nama = "BRI",
         gambar = "bri.png",
         deskripsi = "Pembayaran melalui transfer Bank BRI",
@@ -28,7 +28,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 3000
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 4,
+        idMetodePembayaran = 4,
         nama = "Dana",
         gambar = "dana.png",
         deskripsi = "Pembayaran melalui Dana",
@@ -36,7 +36,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 2950
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 5,
+        idMetodePembayaran = 5,
         nama = "Gopay",
         gambar = "gopay.png",
         deskripsi = "Pembayaran melalui Gopay",
@@ -44,7 +44,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 3300
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 6,
+        idMetodePembayaran = 6,
         nama = "Ovo",
         gambar = "ovo.png",
         deskripsi = "Pembayaran melalui Ovo",
@@ -52,7 +52,7 @@ val metodePembayaranList = listOf(
         biayaTransfer = 4750
     ),
     MetodePembayaran(
-        kodeMetodePembayaran = 7,
+        idMetodePembayaran = 7,
         nama = "Shopee Pay",
         gambar = "shopee.png",
         deskripsi = "Pembayaran melalui Shopee Pay",

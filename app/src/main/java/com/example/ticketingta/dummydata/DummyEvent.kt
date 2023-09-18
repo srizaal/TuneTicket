@@ -2,28 +2,28 @@ import com.example.ticketingta.model.Artis
 import com.example.ticketingta.model.Event
 
 val artis1 = Artis(
-    kodeArtis = 1,
+    idArtis = 1,
     nama = "Andmesh Kamaleng",
     foto = "andmesh",
     deskripsi = "Penyanyi terkenal Indonesia dengan banyak penghargaan."
 )
 
 val artis2 = Artis(
-    kodeArtis = 2,
+    idArtis = 2,
     nama = "NOAH",
     foto = "noah",
     deskripsi = "Band rock populer dengan lagu-lagu hits."
 )
 
 val artis3 = Artis(
-    kodeArtis = 3,
+    idArtis = 3,
     nama = "Raisa",
     foto = "raisa",
     deskripsi = "Penyanyi dan pencipta lagu berbakat."
 )
 
 val artis4 = Artis(
-    kodeArtis = 4,
+    idArtis = 4,
     nama = "Bunga Citra Lestari",
     foto = "bcl.jpeg",
     deskripsi = "Penyanyi perempuan asal Indonesia."
@@ -31,77 +31,77 @@ val artis4 = Artis(
 
 
 val artis5 = Artis(
-    kodeArtis = 5,
+    idArtis = 5,
     nama = "Isyana Sarasvati",
     foto = "isyana",
     deskripsi = "Penyanyi, pianis, dan aktris berbakat."
 )
 
 val artis6 = Artis(
-    kodeArtis = 6,
+    idArtis = 6,
     nama = "Dewa 19",
     foto = "dewa19",
     deskripsi = "Band terkenal di Indonesia dengan fanbase besar."
 )
 
 val artis7 = Artis(
-    kodeArtis = 7,
+    idArtis = 7,
     nama = "Febi Putri",
     foto = "febiputri",
     deskripsi = "Penyanyi dengan lagu-lagu indie."
 )
 
 val artis8 = Artis(
-    kodeArtis = 8,
+    idArtis = 8,
     nama = "Mahalini",
     foto = "mahalini",
     deskripsi = "Penyanyi berbakat dari Indonesia."
 )
 
 val artis9 = Artis(
-    kodeArtis = 9,
+    idArtis = 9,
     nama = "Judika",
     foto = "judika",
     deskripsi = "Penyanyi pop Indonesia dengan suara merdu."
 )
 
 val artis10 = Artis(
-    kodeArtis = 10,
+    idArtis = 10,
     nama = "GAC (Gamaliel Audrey Cantika)",
     foto = "gac",
     deskripsi = "Grup musik pop Indonesia dengan harmoni vokal yang indah."
 )
 
 val artis11 = Artis(
-    kodeArtis = 11,
+    idArtis = 11,
     nama = "Tulus",
     foto = "tulus",
     deskripsi = "Penyanyi Indonesia dengan lagu-lagu hits."
 )
 
 val artis12 = Artis(
-    kodeArtis = 12,
+    idArtis = 12,
     nama = "Nadin Amizah",
     foto = "nadin",
     deskripsi = "Penyanyi perempuan Indonesia dengan gaya vokal unik."
 )
 
 val artis13 = Artis(
-    kodeArtis = 13,
+    idArtis = 13,
     nama = "Ari Lasso",
     foto = "arilasso",
     deskripsi = "Penyanyi pria Indonesia yang dikenal dengan lagu-lagu emosional."
 )
 
 val artis14 = Artis(
-    kodeArtis = 14,
+    idArtis = 14,
     nama = "RAN",
     foto = "ran",
     deskripsi = "Grup musik pop Indonesia dengan lagu-lagu yang catchy."
 )
 
 val artis15 = Artis(
-    kodeArtis = 15,
+    idArtis = 15,
     nama = "Rossa",
     foto = "rossa",
     deskripsi = "Penyanyi pop Indonesia dengan suara yang khas."
@@ -112,7 +112,7 @@ val artis15 = Artis(
 
 
 val eventMusik = Event(
-    kodeEvent = 1,
+    idEvent = 1,
     nama = "SYNCHRONIZE FESTIVAL",
     bannerEvent = "snychronize",
     jenisEvent = "Musik",
@@ -127,7 +127,7 @@ val eventMusik = Event(
 )
 
 val eventMusik2 = Event(
-    kodeEvent = 2,
+    idEvent = 2,
     nama = "JAVA JAZZ",
     bannerEvent = "javajazz",
     jenisEvent = "Musik",
@@ -143,7 +143,7 @@ val eventMusik2 = Event(
 
 
 val eventMusik3 = Event(
-    kodeEvent = 3,
+    idEvent = 3,
     nama = "SOUNDRENALINE",
     bannerEvent = "soundrenaline",
     jenisEvent = "Musik",
@@ -159,7 +159,7 @@ val eventMusik3 = Event(
 
 
 val eventMusik4 = Event(
-    kodeEvent = 4,
+    idEvent = 4,
     nama = "Djakarta Warehouse Project",
     bannerEvent = "dwp",
     jenisEvent = "Musik",
@@ -175,7 +175,7 @@ val eventMusik4 = Event(
 
 
 val eventMusik5 = Event(
-    kodeEvent = 5,
+    idEvent = 5,
     nama = "HeyFest",
     bannerEvent = "heyfest",
     jenisEvent = "Musik",

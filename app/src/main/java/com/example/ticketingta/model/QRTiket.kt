@@ -1,8 +1,8 @@
 package com.example.ticketingta.model
 
-data class Tiket(
+data class QRTiket(
     val gambarQR: String,
-    val kodeTiket: Int,
+    val idQRTiket: Int,
     val statusPemakaianTiket: String,
     val tanggalCheckin: String,
     val waktuCheckin: String
