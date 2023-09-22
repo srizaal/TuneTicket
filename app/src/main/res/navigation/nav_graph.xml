@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_beranda_to_detail_tiket"
             app:destination="@id/detail_tiket" />
+        <action
+            android:id="@+id/action_beranda_to_transaksi_berhasil"
+            app:destination="@id/transaksi_berhasil" />
+        <action
+            android:id="@+id/action_beranda_to_profile"
+            app:destination="@id/profile" />
     </fragment>
 
 
@@ -37,17 +43,34 @@
         <action
             android:id="@+id/action_pilih_tiket_to_detail_tiket"
             app:destination="@id/detail_tiket" />
+        <action
+            android:id="@+id/action_pilih_tiket_to_payment_konfirmasi"
+            app:destination="@id/payment_konfirmasi" />
     </fragment>
     <fragment
         android:id="@+id/payment_berhasil"
         android:name="com.example.ticketingta.payment_berhasil"
         android:label="fragment_payment_berhasil"
-        tools:layout="@layout/fragment_payment_berhasil" />
+        tools:layout="@layout/fragment_payment_berhasil" >
+        <action
+            android:id="@+id/action_payment_berhasil_to_tiket"
+            app:destination="@id/tiket" />
+        <action
+            android:id="@+id/action_payment_berhasil_to_beranda"
+            app:destination="@id/beranda" />
+    </fragment>
     <fragment
         android:id="@+id/payment_konfirmasi"
         android:name="com.example.ticketingta.payment_konfirmasi"
         android:label="fragment_payment_konfirmasi"
-        tools:layout="@layout/fragment_payment_konfirmasi" />
+        tools:layout="@layout/fragment_payment_konfirmasi" >
+        <action
+            android:id="@+id/action_payment_konfirmasi_to_payment_berhasil"
+            app:destination="@id/payment_berhasil" />
+        <action
+            android:id="@+id/action_payment_konfirmasi_to_pilih_tiket"
+            app:destination="@id/pilih_tiket" />
+    </fragment>
     <fragment
         android:id="@+id/payment_pending"
         android:name="com.example.ticketingta.payment_pending"
@@ -62,17 +85,28 @@
         android:id="@+id/tiket"
         android:name="com.example.ticketingta.tiket"
         android:label="fragment_tiket"
-        tools:layout="@layout/fragment_tiket" />
+        tools:layout="@layout/fragment_tiket" >
+        <action
+            android:id="@+id/action_tiket_to_tiket_detail"
+            app:destination="@id/tiket_detail" />
+        <action
+            android:id="@+id/action_tiket_to_beranda"
+            app:destination="@id/beranda" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.ticketingta.profile"
+        android:name="com.example.ticketingta.activity.profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/tiket_detail"
         android:name="com.example.ticketingta.tiket_detail"
         android:label="fragment_tiket_detail"
-        tools:layout="@layout/fragment_tiket_detail" />
+        tools:layout="@layout/fragment_tiket_detail" >
+        <action
+            android:id="@+id/action_tiket_detail_to_tiket"
+            app:destination="@id/tiket" />
+    </fragment>
     <fragment
         android:id="@+id/transaksi_berhasil"
         android:name="com.example.ticketingta.transaksi_berhasil"
@@ -97,16 +131,28 @@
         android:id="@+id/splash_screen"
         android:name="com.example.ticketingta.splash_screen"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" />
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splash_screen_to_login"
+            app:destination="@id/login" />
+    </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.ticketingta.login"
+        android:name="com.example.ticketingta.activity.Login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+    </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.example.ticketingta.register"
+        android:name="com.example.ticketingta.activity.register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
+    </fragment>
 
 </navigation>
