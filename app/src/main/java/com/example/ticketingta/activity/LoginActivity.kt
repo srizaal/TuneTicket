@@ -3,6 +3,7 @@ package com.example.ticketingta.activity
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ticketingta.databinding.FragmentActivityLoginBinding
 import com.example.ticketingta.databinding.FragmentLoginBinding
 import com.example.ticketingta.model.LoginResponse
 import com.example.ticketingta.network.RetrofitClient
@@ -11,13 +12,13 @@ import javax.security.auth.callback.Callback
 
 
 class LoginActivity : AppCompatActivity() {
-    private var binding : FragmentLoginBinding? = null
+    private var binding : FragmentActivityLoginBinding? = null
     private var email : String = ""
     private var pass : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
         binding!!.btnLogin.setOnClickListener {

@@ -8,10 +8,10 @@ import retrofit2.http.POST
 
 interface ApiClient {
     @FormUrlEncoded
-    @POST("login/login_server.php")
+    @POST("login/login_service.php")
     fun  login(
         @Field("post_email") email : String,
-        @Field("post_password") password : String,
+        @Field("post_password") password : String
     ): Call<LoginResponse>
 
 }

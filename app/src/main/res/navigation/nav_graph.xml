@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/beranda">
+    app:startDestination="@id/activity_login">
 
     <fragment
         android:id="@+id/beranda"
@@ -154,5 +154,13 @@
             android:id="@+id/action_register_to_login"
             app:destination="@id/login" />
     </fragment>
-
+    <fragment
+        android:id="@+id/activity_login"
+        android:name="com.example.ticketingta.activity_login"
+        android:label="fragment_activity_login"
+        tools:layout="@layout/fragment_activity_login" >
+        <action
+            android:id="@+id/action_activity_login_to_beranda"
+            app:destination="@id/beranda" />
+    </fragment>
 </navigation>
