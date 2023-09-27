@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.ticketingta.MainActivity
-import com.example.ticketingta.Profil
+import com.example.ticketingta.Profile
 import com.example.ticketingta.databinding.ActivityLoginBinding
 import com.example.ticketingta.model.LoginResponse
 import com.example.ticketingta.network.RetrofitClient
@@ -31,7 +31,7 @@ class Login : AppCompatActivity() {
 
         profil = getSharedPreferences("login_session", MODE_PRIVATE)
         if (profil.getString("nama",null) != null){
-            startActivity(Intent(this@Login,Profil::class.java))
+            startActivity(Intent(this@Login, Profile::class.java))
         }
 
         binding!!.btnLogin.setOnClickListener {
@@ -50,6 +50,10 @@ class Login : AppCompatActivity() {
                     getData()
                 }
             }
+        }
+
+        binding!!.tvMasuk.setOnClickListener {
+            startActivity(Intent(this, Register::class.java))
         }
     }
 

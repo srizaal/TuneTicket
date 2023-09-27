@@ -17,10 +17,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [beranda.newInstance] factory method to
+ * Use the [Beranda.newInstance] factory method to
  * create an instance of this fragment.
  */
-class beranda : Fragment() {
+class Beranda : Fragment() {
     // TODO: Rename and change types of parameters
 
     private lateinit var binding: FragmentBerandaBinding

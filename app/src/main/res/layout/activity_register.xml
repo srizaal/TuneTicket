@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backcolor">
+    android:background="@drawable/backcolor"
+    tools:context=".activity.Register">
 
     <TextView
         android:id="@+id/tvtitle"
@@ -34,7 +35,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="280dp"
-        android:layout_height="420dp"
+        android:layout_height="500dp"
         android:layout_marginTop="32dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            style="@style/LoginTextInputOuterFieldStyle"
             android:layout_marginTop="50dp"
+            style="@style/LoginTextInputOuterFieldStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +71,7 @@
                 android:id="@+id/namaET"
                 android:layout_width="match_parent"
                 style="@style/LoginTextInputInnerFieldStyle"
-                android:layout_height="43dp"
+                android:layout_height="match_parent"
                 android:hint="@string/nama_lengkap"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,7 +82,7 @@
             android:layout_height="wrap_content"
             style="@style/LoginTextInputOuterFieldStyle"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="120dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,9 +93,9 @@
             app:layout_constraintTop_toBottomOf="@+id/emailLoginLayout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+                android:id="@+id/emailET"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="match_parent"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:hint="@string/email"
                 android:inputType="text" />
@@ -106,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             style="@style/LoginTextInputOuterFieldStyle"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="190dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +121,7 @@
                 android:id="@+id/teleponET"
                 android:layout_width="match_parent"
                 style="@style/LoginTextInputInnerFieldStyle"
-                android:layout_height="43dp"
+                android:layout_height="match_parent"
                 android:hint="@string/telp"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +132,7 @@
             android:layout_height="wrap_content"
             style="@style/LoginTextInputOuterFieldStyle"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="228dp"
+            android:layout_marginTop="260dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +145,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordET"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="match_parent"
                 style="@style/LoginTextInputInnerFieldStyle"
                 android:hint="@string/password"
                 android:inputType="text" />
@@ -153,10 +154,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="300dp"
-            android:background="@color/bgpinkbgt"
+            android:layout_marginTop="340dp"
+            android:backgroundTint="@color/bgpinkbgt"
             android:text="@string/btn_sign_up"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -166,16 +167,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordLoginLayout"
             tools:ignore="VisualLinkButtonSize" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:id="@+id/vwLine1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="410dp"
             android:layout_marginEnd="160dp"
             android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +185,7 @@
             android:layout_height="wrap_content"
             android:text="OR"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="340dp"
+            android:layout_marginTop="400dp"
             android:layout_marginEnd="130dp"/>
 
 
@@ -197,7 +194,7 @@
             android:layout_width="123dp"
             android:layout_height="1dp"
             android:layout_marginStart="138dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="410dp"
             android:layout_marginEnd="32dp"
             android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,7 +207,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
+            android:layout_marginTop="440dp"
             android:text="Sudah memiliki akun ? "
             android:layout_marginStart="32dp"/>
 
@@ -218,7 +215,7 @@
             android:id="@+id/tvMasuk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
+            android:layout_marginTop="440dp"
             android:text="LOGIN"
             android:textColor="@color/bgpinkbgt"
             android:layout_marginStart="180dp"/>

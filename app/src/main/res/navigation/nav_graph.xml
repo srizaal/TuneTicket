@@ -3,31 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/beranda">
+    app:startDestination="@id/navExplore">
 
     <fragment
-        android:id="@+id/beranda"
-        android:name="com.example.ticketingta.beranda"
+        android:id="@+id/navExplore"
+        android:name="com.example.ticketingta.Beranda"
         android:label="fragment_beranda"
         tools:layout="@layout/fragment_beranda" />
-   <fragment
-        android:id="@+id/payment_berhasil"
-        android:name="com.example.ticketingta.payment_berhasil"
-        android:label="fragment_payment_berhasil"
-        tools:layout="@layout/fragment_payment_berhasil" />
     <fragment
-        android:id="@+id/tiket"
+        android:id="@+id/navTiket"
         android:name="com.example.ticketingta.tiket"
         android:label="fragment_tiket"
         tools:layout="@layout/fragment_tiket" />
     <fragment
-        android:id="@+id/transaksi_berhasil"
+        android:id="@+id/navTransaksi"
         android:name="com.example.ticketingta.transaksi_berhasil"
         android:label="fragment_transaksi_berhasil"
         tools:layout="@layout/fragment_transaksi_berhasil" />
-    <fragment
-        android:id="@+id/profil"
-        android:name="com.example.ticketingta.Profil"
-        android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" />
+  <fragment
+      android:id="@+id/navProfile"
+      android:name="com.example.ticketingta.Profile"
+      android:label="fragment_profile"
+      tools:layout="@layout/fragment_profile" />
 </navigation>
