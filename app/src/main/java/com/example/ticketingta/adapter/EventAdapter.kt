@@ -35,8 +35,6 @@ class EventAdapter (private val fragment: Fragment, private val context: Context
         holder.txtTanggalTiket.text = event.tanggal
         holder.txtLokasi.text = event.lokasi
         holder.txtHargaTiket.text = event.hargaTiket.toString()
-
-
         val namaGambar = event.bannerEvent
         val gambarResID = context.resources.getIdentifier(namaGambar, "drawable", context.packageName)
         holder.imgEvent.setImageResource(gambarResID)

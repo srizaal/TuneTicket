@@ -2,5 +2,10 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">172.168.34.62</domain>
+        
+<!--      ip addressnya Komputer Debo kalo make wifi BLK  -->
+        <domain includeSubdomains="true">172.168.33.240</domain>
+<!--        ip addressnya Laptop Bagas kalo make wifi Rumah-->
+        <domain includeSubdomains="true">192.168.64.38</domain>
     </domain-config>
 </network-security-config>
