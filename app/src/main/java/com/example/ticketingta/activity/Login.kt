@@ -31,7 +31,9 @@ class Login : AppCompatActivity() {
 
         profil = getSharedPreferences("login_session", MODE_PRIVATE)
         if (profil.getString("nama",null) != null){
-            startActivity(Intent(this@Login, Profile::class.java))
+//            startActivity(Intent(this@Login, Profile::class.java))
+            startActivity(Intent(this@Login, MainActivity::class.java))
+
         }
 
         binding!!.btnLogin.setOnClickListener {

@@ -16,9 +16,6 @@
         android:theme="@style/Theme.TicketingTA"
         tools:targetApi="31">
         <activity
-            android:name=".Profil"
-            android:exported="false" />
-        <activity
             android:name=".activity.PaymentBerhasil"
             android:exported="false" />
         <activity
