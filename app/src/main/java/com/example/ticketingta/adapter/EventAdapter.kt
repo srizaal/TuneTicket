@@ -1,6 +1,8 @@
 package com.example.ticketingta.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.telecom.Call.Details
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.ticketingta.MainActivity
 import com.example.ticketingta.R
+import com.example.ticketingta.activity.DetailEvent
 import com.example.ticketingta.model.Event
 
 
@@ -36,8 +41,23 @@ class EventAdapter (private val fragment: Fragment, private val context: Context
         holder.txtLokasi.text = event.lokasi
         holder.txtHargaTiket.text = event.hargaTiket.toString()
         val namaGambar = event.bannerEvent
-        val gambarResID = context.resources.getIdentifier(namaGambar, "drawable", context.packageName)
+        val parts = namaGambar?.split(".")
+        val namaGambarTanpaEkstensi = parts?.first()
+        val gambarResID = context.resources.getIdentifier(namaGambarTanpaEkstensi, "drawable", context.packageName)
         holder.imgEvent.setImageResource(gambarResID)
+
+
+        holder.cardEvent.setOnClickListener {
+            //Ganti Activity
+            val intent = Intent(context, DetailEvent::class.java)
+            intent.putExtra("eventId", event.idEvent)
+            context.startActivity(intent)
+
+        }
+
+
+
+
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
