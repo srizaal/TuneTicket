@@ -38,7 +38,7 @@ class Beranda : Fragment() {
     // TODO: Rename and change types of parameters
 
     private lateinit var binding: FragmentBerandaBinding
-    private lateinit var mViewModel: MyViewModel
+    private lateinit var myViewModel: MyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class Beranda : Fragment() {
         binding = FragmentBerandaBinding.inflate(layoutInflater,container,false)
 
         //View Model untuk ambil data List Event
-        val myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
         val adapter = EventAdapter(this, requireContext(), myViewModel)
         val rvListEvent = binding.rvEvent

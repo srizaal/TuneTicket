@@ -32,10 +32,10 @@ class Repository(private val apiClient: ApiClient) {
             val response = call.execute()
             if (response.isSuccessful) {
                 _event.postValue(response.body())
-                val tempEvent = response.body()
-                if (tempEvent != null) {
-                    printOneEvent(tempEvent)
-                }
+//                val tempEvent = response.body()
+//                if (tempEvent != null) {
+//                    printOneEvent(tempEvent)
+//                }
             } else {
                 // Tangani kegagalan respons di sini
                 handleApiError(response)
@@ -57,11 +57,11 @@ class Repository(private val apiClient: ApiClient) {
             val response = call.execute()
             if (response.isSuccessful) {
                 _eventList.postValue(response.body())
-                //print di log
-                val listEvent = response.body()
-                if (listEvent != null) {
-                    printEventList(listEvent)
-                }
+//                //print di log
+//                val listEvent = response.body()
+//                if (listEvent != null) {
+//                    printEventList(listEvent)
+//                }
             } else {
                 // Tangani kegagalan respons di sini
                 handleApiError(response)

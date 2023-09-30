@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.ticketingta.MainActivity
 import com.example.ticketingta.databinding.ActivityDetailEventBinding
 import com.example.ticketingta.model.Event
 import com.example.ticketingta.network.RetrofitClient
@@ -18,14 +20,13 @@ import retrofit2.Response
 class DetailEvent : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailEventBinding
-    private lateinit var mViewModel: MyViewModel
+    private lateinit var myViewModel: MyViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailEventBinding.inflate(layoutInflater)
 
-
         //View Model untuk ambil data Event
-        val myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
         //Intent untuk ambil data Event
         var intent = intent
@@ -34,28 +35,66 @@ class DetailEvent : AppCompatActivity() {
         Log.d("Event ID Tes", "ID Event: ${eventId}")
 
         // ambil data Event
+//        getData(eventId)
 //        myViewModel.getOneEvent(eventId)
         myViewModel.event.observe(this, Observer {
             //tampilkan data event
             showEvent(it)
         })
 
-
         setContentView(binding.root)
 
-//        getData(eventId)
-
+        // Jika button bayar ditekan
         binding.btnBayarDetailEvent.setOnClickListener {
-
             //Ambil data id Customer buat bikin pesanan
+            val profil = getSharedPreferences("login_session", MODE_PRIVATE)
+            val idCustomer: Int = profil.getInt("id_customer", 0)
+
+            //Ambil data id Event buat bikin pesanan
+//            val idEvent : Int? = myViewModel.event.value?.idEvent
+            val idEvent = eventId
 
 
-            //Ganti Activity
-            val intent = Intent(this, PilihTiket::class.java)
-//            intent.putExtra("eventId", event.idEvent)
-            startActivity(intent)
+            //Jika ada kesalahan pengambilan data customer atatu event, tidak jadi membuat data pemesanan dan pindah halaman
+            if (idCustomer == 0 || idEvent == 0 ){
+                Toast.makeText(this, "Terjadi Kesalahan Pengambilan Data Customer atau Event", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            //Insert Pemesanan
+            myViewModel.insertPemesanan(idCustomer, idEvent)
+
+            //Simpan Id Pemesanan Baru
+            myViewModel.insertPemesananResponse.observe(this, Observer {
+
+                Log.d("Tes ID Pemesanan Baru", "(Detail Event) Id Pemesanan Baru = ${it.idPemesanan}")
+                val idPemesananBaru = it.idPemesanan
+
+                //Ganti Activity
+                val intent = Intent(this, PilihTiket::class.java)
+                intent.putExtra("idPemesananBaru", idPemesananBaru)
+                intent.putExtra("idEvent", idEvent)
+                startActivity(intent)
+            })
+
+
+            //Jika ada kesalahan pengambilan data customer atatu event, tidak jadi membuat data pemesanan dan pindah halaman
+            //Nanti di cek lagi
+//            if (idPemesananBaru == 0 ){
+//                Toast.makeText(this, "Terjadi Kesalahan Pembuatan Pemesanan Baru", Toast.LENGTH_LONG).show()
+//                return@setOnClickListener
+//            }
+
+//            //Ganti Activity
+//            val intent = Intent(this, PilihTiket::class.java)
+//            intent.putExtra("idPemesananBaru", idPemesananBaru)
+//            intent.putExtra("idEvent", idEvent)
+//            startActivity(intent)
         }
 
+        binding.icBack.setOnClickListener{
+            finish()
+        }
     }
 
     private fun showEvent(event: Event) {

@@ -26,11 +26,10 @@ import retrofit2.http.Query
 interface ApiClient {
     @FormUrlEncoded
     @POST("login/login_service.php")
-    fun  login(
+    fun login(
         @Field("post_email") email : String,
         @Field("post_password") password : String
     ): Call<LoginResponse>
-
 
     // Endpoint untuk mendapatkan event
     @GET("phpapi/phpapi2.php?function=get_event")
