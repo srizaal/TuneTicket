@@ -1,16 +1,19 @@
 package com.example.ticketingta.urusandata
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.ticketingta.model.Event
 import com.example.ticketingta.model.MetodePembayaran
+import com.example.ticketingta.model.response.HalamanListTiketResponse
+import com.example.ticketingta.model.response.HalamanListTiketSpesifikResponse
+import com.example.ticketingta.model.response.HalamanPaymentResponse
+import com.example.ticketingta.model.response.InsertPembayaranResponse
+import com.example.ticketingta.model.response.InsertPemesananResponse
 import com.example.ticketingta.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import java.lang.Exception
 
 class MyViewModel(application: Application) : AndroidViewModel(application) {
@@ -43,7 +46,6 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
     // LiveData untuk menampung hasil getMetodePembayaran
     val metodePembayaranList: LiveData<List<MetodePembayaran>> = repository.metodePembayaranList
 
@@ -54,45 +56,129 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // LiveData untuk response insert pemesanan
+    val insertPemesananResponse: LiveData<InsertPemesananResponse> = repository.insertPemesananResponse
 
-    private fun handleApiError(response: Response<*>) {
-        val errorMessage = "Error: ${response.code()} - ${response.message()}"
-        Log.e("API Error", errorMessage)
-        throw Exception("API call failed with code: ${response.code()}")
-    }
+    // Fungsi untuk melakukan insert pemesanan
+    fun insertPemesanan(idCustomer: Int, idEvent: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.insertPemesanan(idCustomer, idEvent)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
 
-    private fun handleNetworkError(e: Exception) {
-        val errorMessage = "Network Error: ${e.message}"
-        Log.e("API Error", errorMessage)
-        throw Exception("Network error: ${e.message}")
-    }
-
-
-    fun printOneEvent(event: Event) {
-        event.let { event ->
-            Log.d("Event Detail", "idEvent: ${event.idEvent}")
-            Log.d("Event Detail", "nama: ${event.nama}")
-            Log.d("Event Detail", "bannerEvent: ${event.bannerEvent}")
-            Log.d("Event Detail", "deskripsi: ${event.deskripsi}")
-            Log.d("Event Detail", "jenisEvent: ${event.jenisEvent}")
-            Log.d("Event Detail", "tanggal: ${event.tanggal}")
-            Log.d("Event Detail", "waktu: ${event.waktu}")
-            Log.d("Event Detail", "lokasi: ${event.lokasi}")
-            Log.d("Event Detail", "gambarMapLokasi: ${event.gambarMapLokasi}")
-            Log.d("Event Detail", "hargaTiket: ${event.hargaTiket}")
-            Log.d("Event Detail", "stokTiket: ${event.stokTiket}")
-            // Cetak properti lainnya sesuai kebutuhan
-            event.listArtis?.forEachIndexed { index, artis ->
-                Log.d("Event Detail", "Artis ke-${index + 1}:")
-                Log.d("Event Detail", "  Kode Artis: ${artis.idArtis}")
-                Log.d("Event Detail", "  Nama Artis: ${artis.nama}")
-                Log.d("Event Detail", "  Foto Artis: ${artis.foto}")
-                Log.d("Event Detail", "  Deskripsi Artis: ${artis.deskripsi}")
             }
-
         }
     }
 
+    // Fungsi untuk menghapus pemesanan
+    fun deletePemesanan(idPemesanan: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deletePemesanan(idPemesanan)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+
+    // LiveData untuk response insert pembayaran
+    val insertPembayaranResponse: LiveData<InsertPembayaranResponse> = repository.insertPembayaranResponse
+
+    // Fungsi untuk melakukan insert pembayaran
+    fun insertPembayaran(
+        jumlahTiket: Int,
+        totalPembayaran: Int,
+        statusPembayaran: String,
+        idPemesanan: Int,
+        idMetodePembayaran: Int
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.insertPembayaran(jumlahTiket, totalPembayaran, statusPembayaran, idPemesanan, idMetodePembayaran)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+    // Fungsi untuk mengupdate pembayaran
+    fun updatePembayaran(idPembayaran: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.updatePembayaran(idPembayaran)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+    // Fungsi untuk menghapus pembayaran
+    fun deletePembayaran(idPembayaran: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deletePembayaran(idPembayaran)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+
+    // LiveData untuk response halaman payment
+    val halamanPaymentResponse: LiveData<HalamanPaymentResponse> = repository.halamanPaymentResponse
+
+    // Fungsi untuk mendapatkan halaman payment
+    fun getHalamanPayment(idPemesanan: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.getHalamanPayment(idPemesanan)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+
+    // Fungsi untuk insert QR Ticket
+    fun insertQRTicket(idQR: Int, gambarQR: String, idPembayaran: Int, statusPemakaian: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.insertQRTicket(idQR, gambarQR, idPembayaran, statusPemakaian)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+    // LiveData untuk response halaman list tiket
+    val halamanListTiketResponse: LiveData<HalamanListTiketResponse> = repository.halamanListTiketResponse
+
+    // Fungsi untuk mendapatkan halaman list tiket
+    fun getHalamanListTiket(idCustomer: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.getHalamanListTiket(idCustomer)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+    // LiveData untuk response halaman list tiket spesifik
+    val halamanListTiketSpesifikResponse: LiveData<HalamanListTiketSpesifikResponse> = repository.halamanListTiketSpesifikResponse
+
+    // Fungsi untuk mendapatkan halaman list tiket spesifik
+    fun getHalamanListTiketSpesifik(idCustomer: Int, idPemesanan: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.getHalamanListTiketSpesifik(idCustomer, idPemesanan)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
 
 
 }

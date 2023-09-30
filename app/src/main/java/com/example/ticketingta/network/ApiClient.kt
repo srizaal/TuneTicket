@@ -5,8 +5,8 @@ import com.example.ticketingta.model.LoginResponse
 import com.example.ticketingta.model.MetodePembayaran
 import com.example.ticketingta.model.response.DeletePembayaranResponse
 import com.example.ticketingta.model.response.DeletePemesananResponse
-import com.example.ticketingta.model.response.GroupListTiketResponse
 import com.example.ticketingta.model.response.HalamanListTiketResponse
+import com.example.ticketingta.model.response.HalamanListTiketSpesifikResponse
 import com.example.ticketingta.model.response.HalamanPaymentResponse
 import com.example.ticketingta.model.response.InsertPembayaranResponse
 import com.example.ticketingta.model.response.InsertPemesananResponse
@@ -44,7 +44,6 @@ interface ApiClient {
     // Endpoint untuk mendapatkan metode pembayaran
     @GET("phpapi/phpapi2.php?function=get_metodePembayaran")
     fun getMetodePembayaran(@Query("id") id: Int? = null): Call<List<MetodePembayaran>>
-
 
     // Endpoint untuk insert pemesanan
     @FormUrlEncoded
@@ -106,14 +105,14 @@ interface ApiClient {
     @GET("phpapi/phpapi2.php?function=get_halaman_list_tiket")
     fun getHalamanListTiket(
         @Query("id_customer") idCustomer: Int
-    ): Call<GroupListTiketResponse>
+    ): Call<HalamanListTiketResponse>
 
     // Endpoint untuk mendapatkan halaman list tiket
     @GET("phpapi/phpapi2.php?function=get_halaman_list_tiket")
     fun getHalamanListTiketSpesifik(
         @Query("id_customer") idCustomer: Int,
         @Query("id_pemesanan") idPemesanan: Int
-    ): Call<HalamanListTiketResponse>
+    ): Call<HalamanListTiketSpesifikResponse>
 
 
 

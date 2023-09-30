@@ -5,19 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ticketingta.model.Event
 import com.example.ticketingta.model.MetodePembayaran
-import com.example.ticketingta.model.response.DeletePemesananResponse
-import com.example.ticketingta.model.response.GroupListTiketResponse
 import com.example.ticketingta.model.response.HalamanListTiketResponse
+import com.example.ticketingta.model.response.HalamanListTiketSpesifikResponse
 import com.example.ticketingta.model.response.HalamanPaymentResponse
 import com.example.ticketingta.model.response.InsertPembayaranResponse
 import com.example.ticketingta.model.response.InsertPemesananResponse
-import com.example.ticketingta.model.response.InsertQRTicketResponse
 import com.example.ticketingta.model.response.PembayaranResponse
 import com.example.ticketingta.model.response.PemesananResponse
 import com.example.ticketingta.network.ApiClient
 import retrofit2.Call
 import retrofit2.Response
 import java.lang.Exception
+
 
 class Repository(private val apiClient: ApiClient) {
 
@@ -27,23 +26,22 @@ class Repository(private val apiClient: ApiClient) {
     val event: LiveData<Event> = _event
 
     // Fungsi untuk mendapatkan satu event berdasarkan kode
-    suspend fun getOneEvent(kode: Int){
-//        return apiClient.getOneEvent(kode)
+    suspend fun getOneEvent(kode: Int) {
         try {
             val call = apiClient.getOneEvent(kode)
             val response = call.execute()
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _event.postValue(response.body())
                 val tempEvent = response.body()
                 if (tempEvent != null) {
                     printOneEvent(tempEvent)
                 }
-            }else{
+            } else {
                 // Tangani kegagalan respons di sini
                 handleApiError(response)
 
             }
-        } catch (e : Exception){
+        } catch (e: Exception) {
             handleNetworkError(e)
         }
     }
@@ -54,7 +52,6 @@ class Repository(private val apiClient: ApiClient) {
 
     // Fungsi untuk mendapatkan daftar event
     suspend fun getListEvent() {
-//        return apiClient.getListEvent()
         try {
             val call = apiClient.getListEvent()
             val response = call.execute()
@@ -69,7 +66,7 @@ class Repository(private val apiClient: ApiClient) {
                 // Tangani kegagalan respons di sini
                 handleApiError(response)
             }
-        }catch (e : Exception){
+        } catch (e: Exception) {
             // Tangani kesalahan jaringan atau kesalahan lainnya
             handleNetworkError(e)
         }
@@ -81,7 +78,6 @@ class Repository(private val apiClient: ApiClient) {
 
     // Fungsi untuk mendapatkan metode pembayaran
     suspend fun getMetodePembayaran(id: Int? = null) {
-//        return apiClient.getMetodePembayaran(id)
         try {
             val call = apiClient.getMetodePembayaran(id)
             val response = call.execute()
@@ -97,9 +93,29 @@ class Repository(private val apiClient: ApiClient) {
         }
     }
 
+    // LiveData untuk menampung hasil insertPemesananResponse
+    private val _insertPemesananResponse = MutableLiveData<InsertPemesananResponse>()
+    val insertPemesananResponse: LiveData<InsertPemesananResponse> = _insertPemesananResponse
+
     // Fungsi untuk melakukan insert pemesanan
-    suspend fun insertPemesanan(idCustomer: Int, idEvent: Int): Call<InsertPemesananResponse> {
-        return apiClient.insertPemesanan(idCustomer, idEvent)
+    suspend fun insertPemesanan(idCustomer: Int, idEvent: Int) {
+        try {
+            val call = apiClient.insertPemesanan(idCustomer, idEvent)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                _insertPemesananResponse.postValue(response.body())
+                response.body()?.let {
+                    Log.d("Insert Pemesanan Response", "status: ${it.status}")
+                    Log.d("Insert Pemesanan Response", "message: ${it.message}")
+                    Log.d("Insert Pemesanan Response", "Id Pemesanan Baru =  ${it.idPemesanan}")
+                }
+            } else {
+                // Tangani kegagalan respons di sini
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
 
     // Fungsi untuk mendapatkan pemesanan terbaru
@@ -107,10 +123,26 @@ class Repository(private val apiClient: ApiClient) {
         return apiClient.getPemesananTerbaru(idCustomer)
     }
 
+
     // Fungsi untuk menghapus pemesanan
-    suspend fun deletePemesanan(idPemesanan: Int): Call<DeletePemesananResponse> {
-        return apiClient.deletePemesanan(idPemesanan)
+    suspend fun deletePemesanan(idPemesanan: Int) {
+        try {
+            val call = apiClient.deletePemesanan(idPemesanan)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.d("Delete Pemesanan Response", "status: ${it.status}")
+                    Log.d("Delete Pemesanan Response", "message: ${it.message}")
+                }
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
+
+    // LiveData untuk menampung hasil insertPemesananResponse
+    private val _insertPembayaranResponse = MutableLiveData<InsertPembayaranResponse>()
+    val insertPembayaranResponse: LiveData<InsertPembayaranResponse> = _insertPembayaranResponse
 
     // Fungsi untuk melakukan insert pembayaran
     suspend fun insertPembayaran(
@@ -119,57 +151,172 @@ class Repository(private val apiClient: ApiClient) {
         statusPembayaran: String,
         idPemesanan: Int,
         idMetodePembayaran: Int
-    ): Call<InsertPembayaranResponse> {
-        return apiClient.insertPembayaran(
-            jumlahTiket,
-            totalPembayaran,
-            statusPembayaran,
-            idPemesanan,
-            idMetodePembayaran
-        )
+    ) {
+
+        try {
+            val call = apiClient.insertPembayaran(
+                jumlahTiket,
+                totalPembayaran,
+                statusPembayaran,
+                idPemesanan,
+                idMetodePembayaran
+            )
+            val response = call.execute()
+            if (response.isSuccessful) {
+                _insertPembayaranResponse.postValue(response.body())
+                response.body()?.let {
+                    Log.d("Insert Pembayaran Response", "status: ${it.status}")
+                    Log.d("Insert Pembayaran Response", "message: ${it.message}")
+                    Log.d("Insert Pemesanan Response", "Id Pemesanan Baru =  ${it.idPembayaran}")
+                }
+            } else {
+                handleApiError(response)
+            }
+
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
 
 
     // Fungsi untuk mengupdate pembayaran
     suspend fun updatePembayaran(idPembayaran: Int) {
         // Panggil fungsi updatePembayaran dari apiClient
-        apiClient.updatePembayaran(idPembayaran)
+        try {
+            val call = apiClient.updatePembayaran(idPembayaran)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.d("Update Pembayaran Response", "status: ${it.status}")
+                    Log.d("Update Pembayaran Response", "message: ${it.message}")
+                }
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
+
 
     // Fungsi untuk menghapus pembayaran
     suspend fun deletePembayaran(idPembayaran: Int) {
         // Panggil fungsi deletePembayaran dari apiClient
-        apiClient.deletePembayaran(idPembayaran)
+        try {
+            val call = apiClient.deletePembayaran(idPembayaran)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.d("Delete Pembayaran Response", "status: ${it.status}")
+                    Log.d("Delete Pembayaran Response", "message: ${it.message}")
+                }
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
 
     // Fungsi untuk mendapatkan pembayaran terbaru
-    suspend fun getPembayaranTerbaru(idCustomer: Int?, statusPembayaran: String?): Call<PembayaranResponse> {
+    suspend fun getPembayaranTerbaru(
+        idCustomer: Int?,
+        statusPembayaran: String?
+    ): Call<PembayaranResponse> {
         // Panggil fungsi getPembayaranTerbaru dari apiClient
         return apiClient.getPembayaranTerbaru(idCustomer, statusPembayaran)
     }
 
+
+    // LiveData untuk menampung hasil getHalamanPayment
+    private val _halamanPaymentResponse = MutableLiveData<HalamanPaymentResponse>()
+    val halamanPaymentResponse: LiveData<HalamanPaymentResponse> = _halamanPaymentResponse
+
     // Fungsi untuk mendapatkan halaman payment
-    suspend fun getHalamanPayment(idPemesanan: Int): Call<HalamanPaymentResponse> {
+    suspend fun getHalamanPayment(idPemesanan: Int) {
         // Panggil fungsi getHalamanPayment dari apiClient
-        return apiClient.getHalamanPayment(idPemesanan)
+
+        try {
+            val call = apiClient.getHalamanPayment(idPemesanan)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                _halamanPaymentResponse.postValue(response.body())
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
+
 
     // Fungsi untuk insert QR Ticket
-    suspend fun insertQRTicket(idQR: Int, gambarQR: String, idPembayaran: Int, statusPemakaian: String): Call<InsertQRTicketResponse> {
+    suspend fun insertQRTicket(
+        idQR: Int,
+        gambarQR: String,
+        idPembayaran: Int,
+        statusPemakaian: String
+    ){
         // Panggil fungsi insertQRTicket dari apiClient
-        return apiClient.insertQRTicket(idQR, gambarQR, idPembayaran, statusPemakaian)
+        try {
+            val call = apiClient.insertQRTicket(idQR, gambarQR, idPembayaran, statusPemakaian)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.d("Insert QRTiket Response", "status: ${it.status}")
+                    Log.d("Insert QRTiket Response", "message: ${it.message}")
+                    Log.d("Insert QRTiket Response", "idPembayaran: ${it.idQR}")
+                }
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
+
+
+    // LiveData untuk menampung hasil getHalamanListTiket
+    private val _halamanListTiketResponse = MutableLiveData<HalamanListTiketResponse>()
+    val halamanListTiketResponse: LiveData<HalamanListTiketResponse> = _halamanListTiketResponse
 
     // Fungsi untuk mendapatkan halaman list tiket
-    suspend fun getHalamanListTiket(idCustomer: Int): Call<GroupListTiketResponse> {
+    suspend fun getHalamanListTiket(idCustomer: Int){
         // Panggil fungsi getHalamanListTiket dari apiClient
-        return apiClient.getHalamanListTiket(idCustomer)
+        try {
+            val call = apiClient.getHalamanListTiket(idCustomer)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                _halamanListTiketResponse.postValue(response.body())
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
 
+    // LiveData untuk menampung hasil getHalamanListTiket
+    private val _halamanListTiketSpesifikResponse = MutableLiveData<HalamanListTiketSpesifikResponse>()
+    val halamanListTiketSpesifikResponse: LiveData<HalamanListTiketSpesifikResponse> = _halamanListTiketSpesifikResponse
+
     // Fungsi untuk mendapatkan halaman list tiket spesifik
-    suspend fun getHalamanListTiketSpesifik(idCustomer: Int, idPemesanan: Int): Call<HalamanListTiketResponse> {
+    suspend fun getHalamanListTiketSpesifik(
+        idCustomer: Int,
+        idPemesanan: Int
+    ) {
         // Panggil fungsi getHalamanListTiketSpesifik dari apiClient
-        return apiClient.getHalamanListTiketSpesifik(idCustomer, idPemesanan)
+        try {
+            val call = apiClient.getHalamanListTiketSpesifik(idCustomer, idPemesanan)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                _halamanListTiketSpesifikResponse.postValue(response.body())
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            handleNetworkError(e)
+        }
     }
 
 
