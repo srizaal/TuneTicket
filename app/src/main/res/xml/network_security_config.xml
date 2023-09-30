@@ -7,5 +7,6 @@
         <domain includeSubdomains="true">172.168.33.240</domain>
 <!--        ip addressnya Laptop Bagas kalo make wifi Rumah-->
         <domain includeSubdomains="true">192.168.64.38</domain>
+        <domain includeSubdomains="true">192.168.0.105</domain>
     </domain-config>
 </network-security-config>

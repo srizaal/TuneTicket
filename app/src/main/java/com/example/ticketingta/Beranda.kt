@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ticketingta.adapter.EventAdapter
@@ -13,6 +15,7 @@ import com.example.ticketingta.databinding.FragmentBerandaBinding
 import com.example.ticketingta.exception.MyCustomException
 import com.example.ticketingta.model.Event
 import com.example.ticketingta.network.RetrofitClient
+import com.example.ticketingta.urusandata.MyViewModel
 import dummyEventList
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,6 +38,7 @@ class Beranda : Fragment() {
     // TODO: Rename and change types of parameters
 
     private lateinit var binding: FragmentBerandaBinding
+    private lateinit var mViewModel: MyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,11 +47,23 @@ class Beranda : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentBerandaBinding.inflate(layoutInflater,container,false)
 
-        val adapter = EventAdapter(this, requireContext())
+        //View Model untuk ambil data List Event
+        val myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+        val adapter = EventAdapter(this, requireContext(), myViewModel)
         val rvListEvent = binding.rvEvent
         rvListEvent.adapter = adapter
         rvListEvent.layoutManager = LinearLayoutManager(requireContext())
+
+        // ambil data List Event
+//        myViewModel.getListEvent()
+        myViewModel.eventList.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }
+
         //Make data dummy dulu, nanti di ganti
+
+
 //        val listEvent = getData()
 
 //        adapter.setData(dummyEventList)
@@ -57,7 +73,7 @@ class Beranda : Fragment() {
 //        }
 
         // Launch the coroutine to fetch albums
-        fetchEvents(adapter)
+//        fetchEvents(adapter)
 
         return binding.root
     }
@@ -69,23 +85,23 @@ class Beranda : Fragment() {
             override fun onResponse(call: Call<List<Event>>, response: Response<List<Event>>) {
                 if (response.isSuccessful){
                     listEvent = response.body()
-//                    listEvent?.forEachIndexed { index, eventResponse ->
-//                        Log.d("Event ke-${index + 1}", "ID Event: ${eventResponse.idEvent}")
-//                        Log.d("Event ke-${index + 1}", "Nama Event: ${eventResponse.nama}")
-//                        Log.d("Event ke-${index + 1}", "Banner Event: ${eventResponse.bannerEvent}")
-//                        Log.d("Event ke-${index + 1}", "Deskripsi: ${eventResponse.deskripsi}")
-//                        Log.d("Event ke-${index + 1}", "Jenis Event: ${eventResponse.jenisEvent}")
-//                        Log.d("Event ke-${index + 1}", "Tanggal: ${eventResponse.tanggal}")
-//                        Log.d("Event ke-${index + 1}", "Waktu: ${eventResponse.waktu}")
-//                        Log.d("Event ke-${index + 1}", "Lokasi: ${eventResponse.lokasi}")
-//                        Log.d(
-//                            "Event ke-${index + 1}",
-//                            "Gambar Map Lokasi: ${eventResponse.gambarMapLokasi}"
-//                        )
-//                        Log.d("Event ke-${index + 1}", "Harga Tiket: ${eventResponse.hargaTiket}")
-//                        Log.d("Event ke-${index + 1}", "Stok Tiket: ${eventResponse.stokTiket}")
-//                        // Cetak properti lainnya sesuai kebutuhan
-//                    }
+                    listEvent?.forEachIndexed { index, eventResponse ->
+                        Log.d("Event ke-${index + 1}", "ID Event: ${eventResponse.idEvent}")
+                        Log.d("Event ke-${index + 1}", "Nama Event: ${eventResponse.nama}")
+                        Log.d("Event ke-${index + 1}", "Banner Event: ${eventResponse.bannerEvent}")
+                        Log.d("Event ke-${index + 1}", "Deskripsi: ${eventResponse.deskripsi}")
+                        Log.d("Event ke-${index + 1}", "Jenis Event: ${eventResponse.jenisEvent}")
+                        Log.d("Event ke-${index + 1}", "Tanggal: ${eventResponse.tanggal}")
+                        Log.d("Event ke-${index + 1}", "Waktu: ${eventResponse.waktu}")
+                        Log.d("Event ke-${index + 1}", "Lokasi: ${eventResponse.lokasi}")
+                        Log.d(
+                            "Event ke-${index + 1}",
+                            "Gambar Map Lokasi: ${eventResponse.gambarMapLokasi}"
+                        )
+                        Log.d("Event ke-${index + 1}", "Harga Tiket: ${eventResponse.hargaTiket}")
+                        Log.d("Event ke-${index + 1}", "Stok Tiket: ${eventResponse.stokTiket}")
+                        // Cetak properti lainnya sesuai kebutuhan
+                    }
                 }
             }
 

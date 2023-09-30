@@ -343,6 +343,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewArtis4"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:backgroundTint="@color/white"
@@ -351,10 +352,10 @@
 
                         <ImageView
                             android:id="@+id/imageArtist4"
-                            android:src="@drawable/raisa"
-                            android:scaleType="fitXY"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/raisa" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
