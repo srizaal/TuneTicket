@@ -62,6 +62,26 @@ class PilihTiket : AppCompatActivity() {
                     mPilihTiketViewModel.metodePembayaran = metodePembayaran
                     Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
                 }
+                R.id.rbDANA -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "Dana"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+                R.id.rbGopay -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "Gopay"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+                R.id.rbOVO -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "Ovo"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+                R.id.rbShopeePay -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "Shopee Pay"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
             }
         }
       
