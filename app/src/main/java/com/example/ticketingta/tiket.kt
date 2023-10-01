@@ -37,7 +37,7 @@ class tiket : Fragment() {
         val profil = requireActivity().getSharedPreferences("login_session", AppCompatActivity.MODE_PRIVATE)
         val idCustomer = profil.getInt("id_customer", 0)
 
-        val adapter = GroupTicketAdapter(requireContext())
+        val adapter = GroupTicketAdapter(requireContext(), myViewModel)
         val rvGroupTicket = binding.rvGroupTicket
         rvGroupTicket.adapter = adapter
         rvGroupTicket.layoutManager = LinearLayoutManager(requireContext())
