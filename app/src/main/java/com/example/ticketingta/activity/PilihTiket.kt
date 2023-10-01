@@ -1,19 +1,19 @@
 package com.example.ticketingta.activity
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.MutableInt
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ticketingta.R
 import com.example.ticketingta.databinding.ActivityPilihTiketBinding
+import com.example.ticketingta.dummydata.metodePembayaranList
 import com.example.ticketingta.model.Event
-import com.example.ticketingta.urusandata.MyViewModel
-import com.example.ticketingta.urusandata.PilihTiketViewModel
+import com.example.ticketingta.model.MetodePembayaran
+import com.example.ticketingta.viewmodel.MyViewModel
+import com.example.ticketingta.viewmodel.PilihTiketViewModel
 
 class PilihTiket : AppCompatActivity() {
 
@@ -36,10 +36,35 @@ class PilihTiket : AppCompatActivity() {
         val idEvent = intent.getIntExtra("idEvent", 0)
         val idPemesanan = intent.getIntExtra("idPemesananBaru", 0)
 
-
         Log.d("Event ID Tes", "ID Event: $idEvent")
         Log.d("Pemesanan ID Tes", "ID Pemesanan: $idPemesanan")
+        
+        val radioGroupPaymentMethods = binding.radioGroupPaymentMethods
+//        val radioButtonMandiri = binding.rbMandiri
+//        val radioButtonBCA = binding.rbBCA
+//        val radioButtonBRI = binding.rbBRI
 
+
+        radioGroupPaymentMethods.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when(checkedId){
+                R.id.rbMandiri -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "Mandiri"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+                R.id.rbBCA -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "BCA"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+                R.id.rbBRI -> {
+                    val metodePembayaran : MetodePembayaran? = metodePembayaranList.firstOrNull{it.nama  == "BRI"}
+                    mPilihTiketViewModel.metodePembayaran = metodePembayaran
+                    Log.d("Tes Metode Pembayaran", "Metode Pembayaran ; ${mPilihTiketViewModel.metodePembayaran}")
+                }
+            }
+        }
+      
 
         // tampilkan data event
         myViewModel.event.observe(this, Observer {
@@ -53,7 +78,11 @@ class PilihTiket : AppCompatActivity() {
             binding.tvQtyTiket.text = it.toString()
         })
         mPilihTiketViewModel.hargaTotal.observe(this, Observer {
-            binding.tvTotalHargaTiket.text = it.toString()
+            if(it != 0 ){
+                binding.tvTotalHargaTiket.text = it.toString()
+            }else{
+                binding.tvTotalHargaTiket.text = mPilihTiketViewModel.hargaTiket.toString()
+            }
         })
 
         setContentView(binding.root)
@@ -95,6 +124,55 @@ class PilihTiket : AppCompatActivity() {
             val alerts = builder.create()
             alerts.show()
         }
+
+        // Jika button bayar ditekan
+        binding.btnBayarPilihTiket.setOnClickListener {
+            //Ambil data untuk membuat data pembayaran
+            val jumlahTiket = mPilihTiketViewModel.ticketCount.value
+            val metodePembayaran = mPilihTiketViewModel.metodePembayaran
+            val hargaTiket = mPilihTiketViewModel.hargaTiket
+            val biayaTransfer: Int? = metodePembayaran?.biayaTransfer
+            val totalPembayaran = hargaTiket * jumlahTiket!! + biayaTransfer!!
+            val statusPembayaran = "Belum Bayar"
+            val idMetodePembayaran : Int = metodePembayaran.idMetodePembayaran!!
+
+            //Buat data pembayaran
+            myViewModel.insertPembayaran(
+                jumlahTiket = jumlahTiket,
+                totalPembayaran = totalPembayaran,
+                statusPembayaran = statusPembayaran,
+                idPemesanan = idPemesanan,
+                idMetodePembayaran = idMetodePembayaran
+            )
+
+        }
+
+        myViewModel.insertPembayaranResponse.observe(this, Observer {
+
+            //Jika Response tidak null, lakukan pengecekan status dan idPembayaran baru
+            if (it != null){
+                //Jika Insert Berhasil
+                if(it.status == 1){
+
+                    val idPembayaranBaru = it.idPembayaran
+                    val intent = Intent(this, PaymentKonfirmasi::class.java)
+                    intent.putExtra("idPembayaranBaru", idPembayaranBaru)
+                    intent.putExtra("idPemesananBaru", idPemesanan)
+
+                    //Delete response dulu sebelum pindah activity
+                    myViewModel.deleteInsertPembayaranResponse()
+
+                    //Load Data halaman selanjutnya
+                    myViewModel.getHalamanPayment(idPemesanan)
+
+                    //Pindah Halaman
+                    startActivity(intent)
+
+                }
+            }
+        })
+
+
 
     }
 

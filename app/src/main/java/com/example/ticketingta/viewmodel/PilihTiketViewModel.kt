@@ -1,4 +1,4 @@
-package com.example.ticketingta.urusandata
+package com.example.ticketingta.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ticketingta.model.Event
+import com.example.ticketingta.model.MetodePembayaran
 import com.example.ticketingta.network.RetrofitClient
 
 class PilihTiketViewModel() : ViewModel() {
@@ -19,11 +20,13 @@ class PilihTiketViewModel() : ViewModel() {
     private val _hargaTotal = MutableLiveData<Int>()
     val hargaTotal: LiveData<Int> = _hargaTotal
 
-    private var hargaTiket : Int = 0
+    var hargaTiket : Int = 0
+
+    var metodePembayaran : MetodePembayaran? = null
 
     init {
         _ticketCount.value = 1 // Inisialisasi jumlah tiket
-
+        metodePembayaran = null
 
     }
 
@@ -31,6 +34,10 @@ class PilihTiketViewModel() : ViewModel() {
     fun getHargaTiket(eventData: Event) {
         hargaTiket = eventData.hargaTiket!!
         Log.d(" Tes Harga Tiket", "(View Model) Harga Tiket : $hargaTiket")
+    }
+
+    fun getMetodePembayaran(metodePembayaran: MetodePembayaran?){
+        this.metodePembayaran = metodePembayaran
     }
 
     // Metode untuk menambah jumlah tiket

@@ -1,4 +1,4 @@
-package com.example.ticketingta.urusandata
+package com.example.ticketingta.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -12,6 +12,8 @@ import com.example.ticketingta.model.response.HalamanPaymentResponse
 import com.example.ticketingta.model.response.InsertPembayaranResponse
 import com.example.ticketingta.model.response.InsertPemesananResponse
 import com.example.ticketingta.network.RetrofitClient
+import com.example.ticketingta.repository.MyRepositoryProvider
+import com.example.ticketingta.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -57,13 +59,25 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // LiveData untuk response insert pemesanan
-    val insertPemesananResponse: LiveData<InsertPemesananResponse> = repository.insertPemesananResponse
+    val insertPemesananResponse: LiveData<InsertPemesananResponse?> = repository.insertPemesananResponse
 
     // Fungsi untuk melakukan insert pemesanan
     fun insertPemesanan(idCustomer: Int, idEvent: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.insertPemesanan(idCustomer, idEvent)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+
+            }
+        }
+    }
+
+    // Fungsi untuk mendelete insertPemesananResponse setelah selesai melakukan pemesanan
+    fun deleteInsertPemesananResponse(){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deleteResponseInsertPemenasanan()
             } catch (e: Exception) {
                 // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
 
@@ -84,7 +98,7 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
 
     // LiveData untuk response insert pembayaran
-    val insertPembayaranResponse: LiveData<InsertPembayaranResponse> = repository.insertPembayaranResponse
+    val insertPembayaranResponse: LiveData<InsertPembayaranResponse?> = repository.insertPembayaranResponse
 
     // Fungsi untuk melakukan insert pembayaran
     fun insertPembayaran(
@@ -97,6 +111,16 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.insertPembayaran(jumlahTiket, totalPembayaran, statusPembayaran, idPemesanan, idMetodePembayaran)
+            } catch (e: Exception) {
+                // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
+            }
+        }
+    }
+
+    fun deleteInsertPembayaranResponse(){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deleteResponseInsertPembayaran()
             } catch (e: Exception) {
                 // Handle error, misalnya dengan mengirimnya ke LiveData khusus untuk error
             }

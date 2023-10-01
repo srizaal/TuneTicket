@@ -1,4 +1,4 @@
-package com.example.ticketingta.urusandata
+package com.example.ticketingta.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -94,8 +94,8 @@ class Repository(private val apiClient: ApiClient) {
     }
 
     // LiveData untuk menampung hasil insertPemesananResponse
-    private val _insertPemesananResponse = MutableLiveData<InsertPemesananResponse>()
-    val insertPemesananResponse: LiveData<InsertPemesananResponse> = _insertPemesananResponse
+    private val _insertPemesananResponse = MutableLiveData<InsertPemesananResponse?>()
+    val insertPemesananResponse: LiveData<InsertPemesananResponse?> = _insertPemesananResponse
 
     // Fungsi untuk melakukan insert pemesanan
     suspend fun insertPemesanan(idCustomer: Int, idEvent: Int) {
@@ -116,6 +116,12 @@ class Repository(private val apiClient: ApiClient) {
         } catch (e: Exception) {
             handleNetworkError(e)
         }
+    }
+
+
+    // Fungsi untuk mendelete insertPemesananResponse setelah selesai melakukan pemesanan
+    suspend fun deleteResponseInsertPemenasanan(){
+        _insertPemesananResponse.postValue(null)
     }
 
     // Fungsi untuk mendapatkan pemesanan terbaru
@@ -141,8 +147,8 @@ class Repository(private val apiClient: ApiClient) {
     }
 
     // LiveData untuk menampung hasil insertPemesananResponse
-    private val _insertPembayaranResponse = MutableLiveData<InsertPembayaranResponse>()
-    val insertPembayaranResponse: LiveData<InsertPembayaranResponse> = _insertPembayaranResponse
+    private val _insertPembayaranResponse = MutableLiveData<InsertPembayaranResponse?>()
+    val insertPembayaranResponse: LiveData<InsertPembayaranResponse?> = _insertPembayaranResponse
 
     // Fungsi untuk melakukan insert pembayaran
     suspend fun insertPembayaran(
@@ -167,7 +173,7 @@ class Repository(private val apiClient: ApiClient) {
                 response.body()?.let {
                     Log.d("Insert Pembayaran Response", "status: ${it.status}")
                     Log.d("Insert Pembayaran Response", "message: ${it.message}")
-                    Log.d("Insert Pemesanan Response", "Id Pemesanan Baru =  ${it.idPembayaran}")
+                    Log.d("Insert Pembayaran Response", "Id Pembayaran Baru =  ${it.idPembayaran}")
                 }
             } else {
                 handleApiError(response)
@@ -176,6 +182,11 @@ class Repository(private val apiClient: ApiClient) {
         } catch (e: Exception) {
             handleNetworkError(e)
         }
+    }
+
+    // Fungsi untuk mendelete insertPembayaranResponse setelah selesai melakukan pembayaran
+    suspend fun deleteResponseInsertPembayaran(){
+        _insertPembayaranResponse.postValue(null)
     }
 
 

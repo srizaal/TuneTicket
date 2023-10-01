@@ -9,6 +9,8 @@ class RetrofitClient {
 //    private val BASE_URL = "http://172.168.33.240/" // Ganti dengan URL Anda
     private val BASE_URL = "http://192.168.0.105/" // Ganti dengan URL Anda
 
+//    private val BASE_URL = "http://192.168.1.104/" // Ganti dengan URL Anda
+
     private fun getRetrofitClient(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)

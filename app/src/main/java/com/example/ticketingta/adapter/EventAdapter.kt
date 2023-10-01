@@ -2,7 +2,6 @@ package com.example.ticketingta.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.telecom.Call.Details
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +9,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.ticketingta.MainActivity
 import com.example.ticketingta.R
 import com.example.ticketingta.activity.DetailEvent
 import com.example.ticketingta.model.Event
-import com.example.ticketingta.urusandata.MyViewModel
+import com.example.ticketingta.viewmodel.MyViewModel
 
 
 class EventAdapter(

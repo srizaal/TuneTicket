@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         navController =  navHostFragment.navController
 
         setupWithNavController(binding.bottomNav, navController)
+
+        val fragmentToDisplay = intent.getStringExtra("fragmentToDisplay")
+        if (fragmentToDisplay == "Tiket") {
+            navController.navigate(R.id.navTiket)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
