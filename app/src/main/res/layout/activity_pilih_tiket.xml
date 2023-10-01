@@ -1,411 +1,390 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pilih_tiket"
     android:background="@color/bgcoklat">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bgpinksedeng"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/constraintPilihTiket">
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
+            android:background="@color/bgpinksedeng"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/icBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jumlah Tiket"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </FrameLayout>
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@+id/frametiket"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout">
+                <ImageView
+                    android:id="@+id/icBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back" />
 
-        <LinearLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah Tiket"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frametiket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvNamaEvent"
-                android:text="Synchronize Fest 2023"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:textStyle="bold"
-                android:textSize="24dp"/>
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvNamaEvent"
+                    android:text="Synchronize Fest 2023"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:textStyle="bold"
+                    android:textSize="24dp"/>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_margin="15dp"
+                    app:cardCornerRadius="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/bgpink"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvNamaJenisTiket"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+                            android:text="Tiket Reguler"
+                            android:textColor="@color/black"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDescJenisTiket"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="@string/tiketdewasa"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="15dp"
+                                android:text="Berakhir tanggal "
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/tvTanggalTiket"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginRight="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/cardImage"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginTop="5dp"
+                                android:text="Rp "
+                                android:textColor="@color/bgpinkbgt"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvHargaTiketDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/cardImage"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginTop="5dp"
+                                android:text="200.000"
+                                android:textColor="@color/bgpinkbgt"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/cardImage"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginTop="5dp"
+                                android:text="/tiket"
+                                android:textColor="@color/bgpinkbgt"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/qtyKurang"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
+                                android:layout_gravity="right"
+                                android:layout_marginLeft="50dp"
+                                android:backgroundTint="@color/bgpinkbgt"
+                                android:drawableBottom="@drawable/ic_minus" />
+
+                            <TextView
+                                android:id="@+id/tvQtyTiket"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="10dp"
+                                android:text="3"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="24dp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/qtyTambah"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
+                                android:layout_gravity="right"
+                                android:layout_marginLeft="20dp"
+                                android:backgroundTint="@color/bgpinkbgt"
+                                android:drawableBottom="@drawable/ic_plus" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Metode Pembayaran"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameMetodePembayaran"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frametiket">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvinfo"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/bgpink"
+                app:layout_constraintTop_toBottomOf="@id/frametiket"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="310dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Instant Payment / Transfer Virtual Account"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="15dp">
+
+                    <RadioButton
+                        android:id="@+id/rbDANA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:drawableStart="@drawable/dana"
+                        android:drawablePadding="10dp"
+                        android:text="DANA" />
+
+                    <RadioButton
+                        android:id="@+id/rbOVO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:drawableStart="@drawable/ovo"
+                        android:drawablePadding="10dp"
+                        android:text="OVO"/>
+
+                    <RadioButton
+                        android:id="@+id/rbGopay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+
+                        android:drawableStart="@drawable/gopay"
+                        android:drawablePadding="10dp"
+                        android:text="GOPAY" />
+
+                    <RadioButton
+                        android:id="@+id/rbShopeePay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/shopee"
+                        android:drawablePadding="10dp"
+                        android:text="Shopee Pay"/>
+
+                    <RadioButton
+                        android:id="@+id/rbMandiri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:drawableStart="@drawable/mandiri"
+                        android:drawablePadding="10dp"
+                        android:text="Mandiri Virtual Account" />
+
+                    <RadioButton
+                        android:id="@+id/rbBCA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:drawableStart="@drawable/bcalogo"
+                        android:drawablePadding="10dp"
+                        android:text="BCA Virtual Account"/>
+
+                    <RadioButton
+                        android:id="@+id/rbBRI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:drawableStart="@drawable/bri"
+                        android:drawablePadding="10dp"
+                        android:text="BRI Virtual Account"/>
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bgpinkmayan"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frameMetodePembayaran"
+            app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                app:cardCornerRadius="15dp">
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/bgpink"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvNamaJenisTiket"
-                        android:layout_width="match_parent"
+                        android:layout_width="208dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:text="Tiket Reguler"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvDescJenisTiket"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:text="@string/tiketdewasa"
+                        android:text="Mulai dari"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Berakhir tanggal "
-                            android:textColor="@color/black"
-                            android:textSize="16dp" />
-
-                        <TextView
-                            android:id="@+id/tvTanggalTiket"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="20dp"
-                            android:textColor="@color/black"
-                            android:textSize="16dp" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="20dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/cardImage"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="5dp"
-                            android:text="Rp "
-                            android:textColor="@color/bgpinkbgt"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvHargaTiketDetail"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/cardImage"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="5dp"
-                            android:text="200.000"
-                            android:textColor="@color/bgpinkbgt"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/cardImage"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginTop="5dp"
-                            android:text="/tiket"
-                            android:textColor="@color/bgpinkbgt"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/qtyKurang"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_marginLeft="17dp"
-                            android:backgroundTint="@color/bgpinkbgt"
-                            android:drawableLeft="@drawable/ic_minus" />
-
-                        <TextView
-                            android:id="@+id/tvQtyTiket"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="10dp"
-                            android:text="3"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="24dp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/qtyTambah"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_marginLeft="20dp"
-                            android:backgroundTint="@color/bgpinkbgt"
-                            android:drawableLeft="@drawable/ic_minus" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Metode Pembayaran"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="15dp"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frameHarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bgpinkmayan"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frametiket"
-        app:layout_constraintVertical_bias="1.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="208dp"
-                    android:layout_height="wrap_content"
-                    android:text="Mulai dari"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="Rp"
-                        android:textColor="@color/bgpinkbgt"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvTotalHargaTiket"
-                        android:layout_width="208dp"
-                        android:layout_height="wrap_content"
-                        android:text="600.000"
-                        android:textColor="@color/bgpinkbgt"
-                        android:textSize="18dp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:text="Rp"
+                            android:textColor="@color/bgpinkbgt"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTotalHargaTiket"
+                            android:layout_width="208dp"
+                            android:layout_height="wrap_content"
+                            android:text="600.000"
+                            android:textColor="@color/bgpinkbgt"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btnBayarPilihTiket"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/bgpinkbgt"
+                    android:text="Bayar"
+                    android:textSize="18dp" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btnBayarPilihTiket"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/bgpinkbgt"
-                android:text="Bayar"
-                android:textSize="18dp" />
-        </LinearLayout>
-    </FrameLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvinfo"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/bgpink"
-        app:layout_constraintTop_toBottomOf="@id/frametiket"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="310dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:text="Instant Payment"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <RadioButton
-                    android:id="@+id/rbDANA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:drawableStart="@drawable/dana"
-                    android:drawablePadding="10dp"
-                    android:text="DANA" />
-
-                <RadioButton
-                    android:id="@+id/rbOVO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:drawableStart="@drawable/ovo"
-                    android:drawablePadding="10dp"
-                    android:text="OVO"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
-
-                <RadioButton
-                    android:id="@+id/rbGopay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-
-                    android:drawableStart="@drawable/gopay"
-                    android:drawablePadding="10dp"
-                    android:text="GOPAY" />
-
-                <RadioButton
-                    android:id="@+id/rbShopeePay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/shopee"
-                    android:drawablePadding="10dp"
-                    android:layout_weight="2"
-                    android:layout_marginLeft="40dp"
-                    android:text="Shopee Pay"/>
-            </LinearLayout>
-        </RadioGroup>
+        </FrameLayout>
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="145dp"
-            android:text="Transfer Virtual Account"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-            android:layout_marginLeft="15dp">
-
-            <RadioButton
-                android:id="@+id/rbMandiri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:drawableStart="@drawable/mandiri"
-                android:drawablePadding="10dp"
-                android:text="Mandiri Virtual Account" />
-
-            <RadioButton
-                android:id="@+id/rbBCA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:drawableStart="@drawable/bcalogo"
-                android:drawablePadding="10dp"
-                android:text="BCA Virtual Account"/>
-
-            <RadioButton
-                android:id="@+id/rbBRI"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:drawableStart="@drawable/bri"
-                android:drawablePadding="10dp"
-                android:text="BRI Virtual Account"/>
-        </RadioGroup>
-
-
-
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
