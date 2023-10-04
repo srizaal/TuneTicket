@@ -10,14 +10,14 @@ import com.example.ticketingta.MainActivity
 import com.example.ticketingta.databinding.ActivityPaymentBerhasilBinding
 import com.example.ticketingta.model.response.HalamanPaymentResponse
 import com.example.ticketingta.viewmodel.MyViewModel
-import com.example.ticketingta.viewmodel.PaymentBerhasilViewModel
+import com.example.ticketingta.viewmodel.PaymentViewModel
 import kotlin.random.Random
 
 class PaymentBerhasil : AppCompatActivity() {
 
     private lateinit var binding: ActivityPaymentBerhasilBinding
     private lateinit var myViewModel: MyViewModel
-    private lateinit var mPaymentBerhasilViewModel: PaymentBerhasilViewModel
+    private lateinit var mPaymentViewModel: PaymentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +25,8 @@ class PaymentBerhasil : AppCompatActivity() {
 
         //View Model untuk ambil data pembayaran
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
-        mPaymentBerhasilViewModel =
-            ViewModelProvider(this).get(PaymentBerhasilViewModel::class.java)
+        mPaymentViewModel =
+            ViewModelProvider(this).get(PaymentViewModel::class.java)
 
         //Intent untuk ambil data
         val intent = intent
@@ -35,15 +35,14 @@ class PaymentBerhasil : AppCompatActivity() {
 
         myViewModel.halamanPaymentResponse.observe(this, Observer {
             showDataHalaman(it)
-            mPaymentBerhasilViewModel.jumlahTiketPemesanan = it.pembayaran.jumlahPemesananTiket!!
-            Log.d("Tes Jumlah Tiket Pemesaan", "Jumlah Tiket = ${mPaymentBerhasilViewModel.jumlahTiketPemesanan}")
+            mPaymentViewModel.jumlahTiketPemesanan = it.pembayaran.jumlahPemesananTiket!!
+            Log.d("Tes Jumlah Tiket Pemesaan", "Jumlah Tiket = ${mPaymentViewModel.jumlahTiketPemesanan}")
         })
 
         setContentView(binding.root)
 
 
         binding.btnPaymentBerhasil.setOnClickListener {
-            createQRTiket(idPembayaran)
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             intent.putExtra("fragmentToDisplay", "Tiket")
@@ -59,7 +58,7 @@ class PaymentBerhasil : AppCompatActivity() {
     }
 
     private fun createQRTiket(idPembayaran: Int) {
-        val jumlahTiket = mPaymentBerhasilViewModel.jumlahTiketPemesanan
+        val jumlahTiket = mPaymentViewModel.jumlahTiketPemesanan
         for (i in 1..jumlahTiket) {
             val idQR = generateRandomNumber()
             val gambarQR = "${idQR}.jpg"

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -11,11 +12,14 @@ import com.example.ticketingta.R
 import com.example.ticketingta.databinding.ActivityPaymentKonfirmasiBinding
 import com.example.ticketingta.model.response.HalamanPaymentResponse
 import com.example.ticketingta.viewmodel.MyViewModel
+import com.example.ticketingta.viewmodel.PaymentViewModel
+import kotlin.random.Random
 
 class PaymentKonfirmasi : AppCompatActivity() {
 
     private lateinit var binding: ActivityPaymentKonfirmasiBinding
     private lateinit var myViewModel: MyViewModel
+    private lateinit var mPaymentViewModel: PaymentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,8 @@ class PaymentKonfirmasi : AppCompatActivity() {
 
         //View Model untuk ambil data Event
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        mPaymentViewModel =
+            ViewModelProvider(this).get(PaymentViewModel::class.java)
 
         //Intent untuk ambil data
         val intent = intent
@@ -31,6 +37,8 @@ class PaymentKonfirmasi : AppCompatActivity() {
 
         myViewModel.halamanPaymentResponse.observe(this, Observer {
             showDataHalaman(it)
+            mPaymentViewModel.jumlahTiketPemesanan = it.pembayaran.jumlahPemesananTiket!!
+            Log.d("Tes Jumlah Tiket Pemesaan", "Jumlah Tiket = ${mPaymentViewModel.jumlahTiketPemesanan}")
         })
 
         setContentView(binding.root)
@@ -48,6 +56,7 @@ class PaymentKonfirmasi : AppCompatActivity() {
 
         binding.btnPembayaranKonfirmasi.setOnClickListener {
             myViewModel.updatePembayaran(idPembayaran)
+            createQRTiket(idPembayaran)
             val intent = Intent(this, PaymentBerhasil::class.java)
             intent.putExtra("idPembayaranBaru", idPembayaran)
             intent.putExtra("idPemesananBaru", idPemesanan)
@@ -86,6 +95,28 @@ class PaymentKonfirmasi : AppCompatActivity() {
         val parts = namaGambar.split(".")
         val namaGambarTanpaEkstensi = parts.first()
         return resources.getIdentifier(namaGambarTanpaEkstensi, "drawable", packageName)
+    }
+
+    private fun createQRTiket(idPembayaran: Int) {
+        val jumlahTiket = mPaymentViewModel.jumlahTiketPemesanan
+        for (i in 1..jumlahTiket) {
+            val idQR = generateRandomNumber()
+            val gambarQR = "${idQR}.jpg"
+            val statusPemakaian = "Belum Dipakai"
+            myViewModel.insertQRTicket(
+                idQR = idQR,
+                gambarQR = gambarQR,
+                idPembayaran = idPembayaran,
+                statusPemakaian = statusPemakaian
+            )
+        }
+    }
+
+    private fun generateRandomNumber(): Int {
+        val lowerBound = 10000
+        val upperBound = 99999
+        // Menghasilkan angka acak 5 digit
+        return Random.nextInt(lowerBound, upperBound + 1)
     }
 
     fun getDetailMetodePembayaran(namaMetodePembayaran: String = ""):String{
