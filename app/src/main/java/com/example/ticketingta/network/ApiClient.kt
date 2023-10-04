@@ -2,6 +2,7 @@ package com.example.ticketingta.network
 
 import com.example.ticketingta.model.Event
 import com.example.ticketingta.model.LoginResponse
+
 import com.example.ticketingta.model.MetodePembayaran
 import com.example.ticketingta.model.response.DeletePembayaranResponse
 import com.example.ticketingta.model.response.DeletePemesananResponse
@@ -14,6 +15,8 @@ import com.example.ticketingta.model.response.InsertQRTicketResponse
 import com.example.ticketingta.model.response.PembayaranResponse
 import com.example.ticketingta.model.response.PemesananResponse
 import com.example.ticketingta.model.response.UpdatePembayaranResponse
+import com.example.ticketingta.model.RegistrasiResponse
+
 import retrofit2.Call
 import retrofit2.http.DELETE
 import retrofit2.http.Field
@@ -30,6 +33,7 @@ interface ApiClient {
         @Field("post_email") email : String,
         @Field("post_password") password : String
     ): Call<LoginResponse>
+
 
     // Endpoint untuk mendapatkan event
     @GET("phpapi/phpapi2.php?function=get_event")
@@ -115,11 +119,12 @@ interface ApiClient {
 
 
 
-
-    
-
-
-
+    fun  register(
+        @Field("nama") nama : String,
+        @Field("email") email : String,
+        @Field("telepon") telepon : String,
+        @Field("password") password : String
+    ): Call<RegistrasiResponse>
 
 
 }

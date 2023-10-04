@@ -33,6 +33,7 @@ class Login : AppCompatActivity() {
         if (profil.getString("nama",null) != null){
 //            startActivity(Intent(this@Login, Profile::class.java))
             startActivity(Intent(this@Login, MainActivity::class.java))
+
         }
 
         binding!!.btnLogin.setOnClickListener {
